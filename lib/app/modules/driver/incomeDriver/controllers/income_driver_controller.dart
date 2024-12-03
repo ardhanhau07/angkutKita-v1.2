@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 
-class RouteOptionController extends GetxController {
-  //TODO: Implement RouteOptionController
+class IncomeDriverController extends GetxController {
+  //TODO: Implement IncomeDriverController
 
   final count = 0.obs;
 

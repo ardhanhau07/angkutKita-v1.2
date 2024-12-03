@@ -8,8 +8,8 @@ void main() async {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
 
-  await initialization(); // Tunggu inisialisasi selesai
-  FlutterNativeSplash.remove(); // Hapus splash screen
+  await initialization(); 
+  FlutterNativeSplash.remove(); 
 
   runApp(MyApp());
 }

@@ -1,9 +1,8 @@
+import 'package:angkut_kita/app/modules/driver/logindriver/views/logindriver_view.dart';
 import 'package:angkut_kita/app/modules/user/login/views/login_view.dart';
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-
 import '../../../settings/constants.dart';
 import '../controllers/role_controller.dart';
 
@@ -31,7 +30,12 @@ class RoleView extends GetView<RoleController> {
                   color: Colors.white)),
           SizedBox(height: 60),
           InkWell(
-            onTap: () {},
+            onTap: () {
+                Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => LogindriverView()),
+              );
+            },
             child: Container(
               width: 330,
               height: 169,

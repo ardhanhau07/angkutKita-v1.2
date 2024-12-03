@@ -1,11 +1,11 @@
-import 'package:angkut_kita/app/modules/createAccount/views/create_account_view.dart';
-import 'package:angkut_kita/app/modules/rootDriver/views/root_driver_view.dart';
+import 'package:angkut_kita/app/modules/user/createAccount/views/create_account_view.dart';
 import 'package:angkut_kita/app/settings/constants.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:page_transition/page_transition.dart';
 
+import '../../rootUser/views/root_user_view.dart';
 import '../controllers/login_controller.dart';
 
 class LoginView extends GetView<LoginController> {
@@ -92,7 +92,7 @@ class LoginView extends GetView<LoginController> {
                                     context,
                                     PageTransition(
                                         type: PageTransitionType.fade,
-                                        child: RootDriverView()));
+                                        child: RootUserView()));
                               },
                               child: Text(
                                 'Log In',

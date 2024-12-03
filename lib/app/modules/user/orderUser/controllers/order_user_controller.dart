@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 
-class RouteOptionController extends GetxController {
-  //TODO: Implement RouteOptionController
+class OrderUserController extends GetxController {
+  //TODO: Implement OrderUserController
 
   final count = 0.obs;
 
