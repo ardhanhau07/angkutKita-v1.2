@@ -64,7 +64,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.LOGIN,
-      page: () => const LoginView(),
+      page: () => LoginView(),
       binding: LoginBinding(),
     ),
     GetPage(
@@ -74,7 +74,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.CREATE_ACCOUNT,
-      page: () => const CreateAccountView(),
+      page: () => CreateAccountView(),
       binding: CreateAccountBinding(),
     ),
     GetPage(

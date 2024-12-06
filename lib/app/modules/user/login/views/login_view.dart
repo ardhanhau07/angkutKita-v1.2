@@ -1,17 +1,71 @@
+import 'dart:math';
+
 import 'package:angkut_kita/app/modules/user/createAccount/views/create_account_view.dart';
+import 'package:angkut_kita/app/services/auth_services.dart';
 import 'package:angkut_kita/app/settings/constants.dart';
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
 import 'package:page_transition/page_transition.dart';
-
 import '../../rootUser/views/root_user_view.dart';
 import '../controllers/login_controller.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 class LoginView extends GetView<LoginController> {
-  const LoginView({super.key});
+  final TextEditingController usernameController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+
+  LoginView({super.key});
+
+  // Future<void> loginUser(
+  //     BuildContext context, String username, String password) async {
+  //   final response = await http.post(
+  //     Uri.parse(
+  //         'https://83ef-103-17-77-3.ngrok-free.app/api/login'), // Ganti dengan URL API CodeIgniter
+  //     headers: {'Content-Type': 'application/json; charset=UTF-8'},
+  //     body: jsonEncode({'username': username, 'password': password}),
+  //   );
+
+  //   if (response.statusCode == 200) {
+  //     final data = jsonDecode(response.body);
+  //     print(data);
+  //     if (data['token'] != null) {
+  //       await saveToken(data['token']);
+  //       Navigator.push(
+  //           context,
+  //           PageTransition(
+  //               type: PageTransitionType.fade, child: RootUserView()));
+  //     } else {
+  //       // Tampilkan pesan jika token tidak ditemukan
+  //       ScaffoldMessenger.of(context).showSnackBar(
+  //         const SnackBar(
+  //             content: Text("Token tidak ditemukan dalam respons API")),
+  //       );
+  //     }
+  //   } else {
+  //     ScaffoldMessenger.of(context).showSnackBar(
+  //       const SnackBar(content: Text("Username atau password salah")),
+  //     );
+  //     print('Failed to login: ${response.body}');
+  //   }
+  // }
+
   @override
   Widget build(BuildContext context) {
+    void _login() {
+      if (usernameController.text == 'user' &&
+          passwordController.text == 'user') {
+        Navigator.push(
+            context,
+            PageTransition(
+                type: PageTransitionType.fade, child: RootUserView()));
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Invalid email or password')),
+        );
+      }
+    }
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,
@@ -49,6 +103,7 @@ class LoginView extends GetView<LoginController> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         TextField(
+                          controller: usernameController,
                           decoration: InputDecoration(
                               hintText: 'Input Your Username Here',
                               label: Text('Username'),
@@ -61,8 +116,9 @@ class LoginView extends GetView<LoginController> {
                         ),
                         SizedBox(height: 15),
                         TextField(
+                          controller: passwordController,
                           decoration: InputDecoration(
-                              hintText: 'Input Your Username Here',
+                              hintText: 'Input Your Password Here',
                               label: Text('Password'),
                               labelStyle: Constants.BodyMedium,
                               filled: true,
@@ -85,19 +141,16 @@ class LoginView extends GetView<LoginController> {
                           width: 300,
                           height: 40,
                           child: ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                  backgroundColor: Colors.deepPurpleAccent),
-                              onPressed: () {
-                                Navigator.push(
-                                    context,
-                                    PageTransition(
-                                        type: PageTransitionType.fade,
-                                        child: RootUserView()));
-                              },
-                              child: Text(
-                                'Log In',
-                                style: Constants.BodySmall,
-                              )),
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.deepPurpleAccent,
+                            ),
+                            onPressed:
+                                _login, // Tidak memanggil, hanya referensi
+                            child: Text(
+                              'Log In',
+                              style: Constants.BodySmall,
+                            ),
+                          ),
                         ),
                         SizedBox(height: 10),
                         Row(
